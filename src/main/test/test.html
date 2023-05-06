@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+</head>
+<body>
+<button onclick="function create_clerk() {
+const xhr = new XMLHttpRequest();
+xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+    alert(xhr.responseText);
+}
+}
+xhr.open('post', 'http://localhost:9999/clerk');
+xhr.send();
+}
+create_clerk()">create clerk
+</button>
+
+<button onclick="function delete_clerk() {
+const xhr = new XMLHttpRequest();
+xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+    alert(xhr.responseText);
+}
+}
+xhr.open('delete', 'http://localhost:9999/clerk');
+xhr.send();
+}
+delete_clerk()">delete clerk
+</button>
+
+<button onclick="function update_clerk() {
+const xhr = new XMLHttpRequest();
+xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+    alert(xhr.responseText);
+}
+}
+xhr.open('put', 'http://localhost:9999/clerk');
+xhr.send();
+}
+update_clerk()">update clerk
+</button>
+
+<button onclick="function retrieve_clerk() {
+const xhr = new XMLHttpRequest();
+xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+    alert(xhr.responseText);
+}
+}
+xhr.open('get', 'http://localhost:9999/clerk');
+xhr.send();
+}
+retrieve_clerk()">retrieve clerk
+</button>
+
+<br>
+
+<button onclick="function create_customer() {
+const xhr = new XMLHttpRequest();
+xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+    alert(xhr.responseText);
+}
+}
+xhr.open('post', 'http://localhost:9999/customer');
+xhr.send();
+}
+create_customer()">create customer
+</button>
+
+<button onclick="function delete_customer() {
+const xhr = new XMLHttpRequest();
+xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+    alert(xhr.responseText);
+}
+}
+xhr.open('delete', 'http://localhost:9999/customer');
+xhr.send();
+}
+delete_customer()">delete customer
+</button>
+
+<button onclick="function update_customer() {
+const xhr = new XMLHttpRequest();
+xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+    alert(xhr.responseText);
+}
+}
+xhr.open('put', 'http://localhost:9999/customer');
+xhr.send();
+}
+update_customer()">update customer
+</button>
+
+<button onclick="function retrieve_customer() {
+const xhr = new XMLHttpRequest();
+xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+    alert(xhr.responseText);
+}
+}
+xhr.open('get', 'http://localhost:9999/customer');
+xhr.send();
+}
+retrieve_customer()">retrieve customer
+</button>
+</body>
+</html>
