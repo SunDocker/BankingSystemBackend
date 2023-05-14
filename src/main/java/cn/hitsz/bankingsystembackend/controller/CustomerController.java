@@ -1,6 +1,7 @@
 package cn.hitsz.bankingsystembackend.controller;
 
 import cn.hitsz.bankingsystembackend.dao.TestClerkDao;
+import cn.hitsz.bankingsystembackend.dao.entity.Customer;
 import cn.hitsz.bankingsystembackend.dao.entity.TestClerk;
 import cn.hitsz.bankingsystembackend.dao.entity.TestCustomer;
 import cn.hitsz.bankingsystembackend.service.LoginService;
@@ -29,11 +30,12 @@ public class CustomerController {
 
     @GetMapping()
     public String getTestCustomer() {
-        List<TestCustomer> testClerk = loginService.getTestCustomer();
+        List<Customer> customers = loginService.getCustomer();
 
         StringBuffer sb = new StringBuffer();
-        for (TestCustomer clerk : testClerk) {
-            sb.append(clerk).append('\n');
+        for (Customer customer : customers) {
+            System.out.println(customer.getClerk_id());
+            sb.append(customer).append('\n');
         }
         return "retrieve response successfully, " +
                 "test customers:\n" + sb;
@@ -41,19 +43,19 @@ public class CustomerController {
 
     @PostMapping()
     public String addTestCustomer() {
-        loginService.addTestCustomer();
+        loginService.addCustomer(loginService.getClerk().get(0).getId());
         return "create response successfully, please check the database table";
     }
 
     @PutMapping()
     public String updateTestCustomer() {
-        loginService.updateTestCustomer();
+        loginService.updateCustomer();
         return "update response successfully, please check the database table";
     }
 
     @DeleteMapping()
     public String deleteTestCustomer() {
-        loginService.deleteTestCustomer();
+        loginService.deleteCustomer();
         return "delete response successfully, please check the database table";
     }
 }

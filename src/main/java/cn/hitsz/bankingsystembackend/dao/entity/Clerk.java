@@ -1,10 +1,12 @@
 package cn.hitsz.bankingsystembackend.dao.entity;
 
-public class TestCustomer {
-    // TODO: 数据库中的表已经创建好了，现在要编写这个实体类，重写 toString() 方法
+public class Clerk {
+    // 必须使用基本数据类型的包装类，不能直接使用基本数据类型
+    // 必须保证主键的字段名为 id，MyBatisPlus 才可以自动识别
     private Long id;
     private String username;
     private String password;
+    private int state;
 
     public Long getId() {
         return id;
@@ -29,13 +31,21 @@ public class TestCustomer {
     public void setPassword(String password) {
         this.password = password;
     }
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int State) {
+        this.state = state;
+    }
 
     @Override
     public String toString() {
-        return "TestCustomer{" +
+        return "TestClerk{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", state='" + state + '\'' +
                 '}';
     }
 }

@@ -1,5 +1,6 @@
 package cn.hitsz.bankingsystembackend.controller;
 
+import cn.hitsz.bankingsystembackend.dao.entity.Clerk;
 import cn.hitsz.bankingsystembackend.dao.entity.TestClerk;
 import cn.hitsz.bankingsystembackend.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,10 +30,10 @@ public class ClerkController {
 
     @GetMapping()
     public String getTestClerk() {
-        List<TestClerk> testClerk = loginService.getTestClerk();
+        List<Clerk> clerks = loginService.getClerk();
 
         StringBuffer sb = new StringBuffer();
-        for (TestClerk clerk : testClerk) {
+        for (Clerk clerk : clerks) {
             sb.append(clerk).append('\n');
         }
         return "retrieve response successfully, " +
@@ -40,20 +41,20 @@ public class ClerkController {
     }
 
     @PostMapping()
-    public String addTestClerk() {
-        loginService.addTestClerk();
+    public String addClerk() {
+        loginService.addClerk();
         return "create response successfully, please check the database table";
     }
 
     @PutMapping()
-    public String updateTestClerk() {
-        loginService.updateTestClerk();
+    public String updateClerk() {
+        loginService.updateClerk();
         return "update response successfully, please check the database table";
     }
 
     @DeleteMapping()
-    public String deleteTestClerk() {
-        loginService.deleteTestClerk();
+    public String deleteClerk() {
+        loginService.deleteClerk();
         return "delete response successfully, please check the database table";
     }
 }

@@ -1,5 +1,7 @@
 package cn.hitsz.bankingsystembackend.service;
 
+import cn.hitsz.bankingsystembackend.dao.entity.Clerk;
+import cn.hitsz.bankingsystembackend.dao.entity.Customer;
 import cn.hitsz.bankingsystembackend.dao.entity.TestClerk;
 import cn.hitsz.bankingsystembackend.dao.entity.TestCustomer;
 
@@ -12,19 +14,19 @@ import java.util.List;
  */
 public interface LoginService {
 
-    List<TestClerk> getTestClerk();
+    List<Clerk> getClerk();
 
-    void addTestClerk();
+    void addClerk();
 
-    void updateTestClerk();
+    void updateClerk();
 
-    void deleteTestClerk();
+    void deleteClerk();
 
-    List<TestCustomer> getTestCustomer();
+    List<Customer> getCustomer();
 
-    void addTestCustomer();
+    void addCustomer(Long clerk_id);
 
-    void updateTestCustomer();
+    void updateCustomer();
 
-    void deleteTestCustomer();
+    void deleteCustomer();
 }
