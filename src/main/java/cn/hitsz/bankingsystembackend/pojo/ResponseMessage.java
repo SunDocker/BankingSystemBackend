@@ -2,11 +2,11 @@ package cn.hitsz.bankingsystembackend.pojo;
 
 public class ResponseMessage {
     boolean success;
-    Object data;
+    Object info;
 
-    public ResponseMessage(boolean success, Object data) {
+    public ResponseMessage(boolean success, Object info) {
         this.success = success;
-        this.data = data;
+        this.info = info;
     }
 
     public boolean isSuccess() {
@@ -17,11 +17,11 @@ public class ResponseMessage {
         this.success = success;
     }
 
-    public Object getData() {
-        return data;
+    public Object getInfo() {
+        return info;
     }
 
-    public void setData(Object data) {
-        this.data = data;
+    public void setInfo(Object info) {
+        this.info = info;
     }
 }

@@ -1,12 +1,5 @@
 package cn.hitsz.bankingsystembackend.service;
 
-import cn.hitsz.bankingsystembackend.dao.entity.Clerk;
-import cn.hitsz.bankingsystembackend.dao.entity.Customer;
-import cn.hitsz.bankingsystembackend.dao.entity.TestClerk;
-import cn.hitsz.bankingsystembackend.dao.entity.TestCustomer;
-
-import java.util.List;
-
 /**
  * 负责 Clerk 和 Customer 的注册、登录等。
  * 目前先用 get, add, update, delete 这些方法名，
@@ -24,17 +17,19 @@ public interface LoginService {
 
     /**
      * 职员登录
+     *
      * @param username 职员用户名
      * @param password 职员密码
      * @return 是否登录成功
      */
-    boolean clerkLogin(String username, String password);
+    Long clerkLogin(String username, String password);
 
     /**
      * 客户登录
+     *
      * @param username 客户用户名
      * @param password 客户密码
      * @return 是否登录成功
      */
-    boolean customerLogin(String username, String password);
+    Long customerLogin(String username, String password);
 }

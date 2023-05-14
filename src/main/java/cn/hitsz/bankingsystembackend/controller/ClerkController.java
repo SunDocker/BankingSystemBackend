@@ -9,7 +9,6 @@ import javax.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping("clerk")
-@CrossOrigin
 public class ClerkController {
     /**
      * controller 层调用 service 层
@@ -37,11 +36,12 @@ public class ClerkController {
         }
     }
 
-    @GetMapping("register/{username}/{password}")
+    @GetMapping("login/{username}/{password}")
     @ResponseBody
     public ResponseMessage clerkLogin(@PathVariable("username") String username, @PathVariable("password") String password, HttpSession session) {
-        if (loginService.clerkLogin(username, password)) {
-            session.setAttribute("login", true);
+        Long id = loginService.clerkLogin(username, password);
+        if (id != null) {
+            session.setAttribute("clerkLogin", id);
             return new ResponseMessage(true, null);
         } else {
             return new ResponseMessage(false, null);

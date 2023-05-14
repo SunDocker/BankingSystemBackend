@@ -2,17 +2,9 @@ package cn.hitsz.bankingsystembackend.service.impl;
 
 import cn.hitsz.bankingsystembackend.dao.ClerkDao;
 import cn.hitsz.bankingsystembackend.dao.CustomerDao;
-import cn.hitsz.bankingsystembackend.dao.entity.Clerk;
-import cn.hitsz.bankingsystembackend.dao.entity.Customer;
-import cn.hitsz.bankingsystembackend.dao.entity.TestClerk;
-import cn.hitsz.bankingsystembackend.dao.entity.Customer;
 import cn.hitsz.bankingsystembackend.service.LoginService;
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class LoginServiceImpl implements LoginService {
@@ -26,4 +18,21 @@ public class LoginServiceImpl implements LoginService {
     @Autowired
     CustomerDao customerDao;
 
+    @Override
+    public boolean clerkRegister(String username, String password) {
+        // TODO
+        return true;
+    }
+
+    @Override
+    public Long clerkLogin(String username, String password) {
+        // TODO
+        return 12345666L;
+    }
+
+    @Override
+    public Long customerLogin(String username, String password) {
+        // TODO
+        return 12345666L;
+    }
 }

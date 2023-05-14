@@ -1,24 +1,22 @@
 package cn.hitsz.bankingsystembackend.controller;
 
-import cn.hitsz.bankingsystembackend.dao.TestClerkDao;
-import cn.hitsz.bankingsystembackend.dao.entity.Customer;
-import cn.hitsz.bankingsystembackend.dao.entity.TestClerk;
-import cn.hitsz.bankingsystembackend.dao.entity.TestCustomer;
 import cn.hitsz.bankingsystembackend.pojo.ResponseMessage;
+import cn.hitsz.bankingsystembackend.service.BalanceService;
 import cn.hitsz.bankingsystembackend.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
 @RestController()
 @RequestMapping("customer")
-@CrossOrigin
 public class CustomerController {
 
     @Autowired
     LoginService loginService;
+
+    @Autowired
+    BalanceService balanceService;
 
     /**
      * 在本地运行项目，用浏览器访问接口：https://localhost:9999/customer/test
@@ -32,11 +30,40 @@ public class CustomerController {
 
     @GetMapping("login/{username}/{password}")
     public ResponseMessage customerLogin(@PathVariable("username") String username, @PathVariable("password") String password, HttpSession session) {
-        if (loginService.customerLogin(username, password)) {
-            session.setAttribute("login", true);
+        Long id = loginService.customerLogin(username, password);
+        if (id != null) {
+            session.setAttribute("customerLogin", id);
             return new ResponseMessage(true, null);
         } else {
             return new ResponseMessage(false, null);
         }
+    }
+
+    @GetMapping("balance")
+    public ResponseMessage balance(HttpSession session) {
+        Long id = (Long) session.getAttribute("customerLogin");
+        if (id == null) {
+            return new ResponseMessage(false, null);
+        }
+        Long balance = balanceService.getBalance(id);
+        if (balance != null) {
+            return new ResponseMessage(true, balance);
+        } else {
+            return new ResponseMessage(false, null);
+        }
+    }
+
+    @PostMapping("transfer/{transferAccount}/{transferAmount}")
+    public ResponseMessage transfer(@PathVariable("transferAccount") String transferAccount, @PathVariable("transferAmount") Long transferAmount, HttpSession session) {
+        Long id = (Long) session.getAttribute("customerLogin");
+        if (id == null) {
+            return new ResponseMessage(false, null);
+        }
+        if (balanceService.transfer(id, transferAccount, transferAmount)) {
+            System.out.println(transferAccount);
+            System.out.println(transferAmount);
+            return new ResponseMessage(true, null);
+        }
+        return new ResponseMessage(false, null);
     }
 }
