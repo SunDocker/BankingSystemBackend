@@ -14,19 +14,27 @@ import java.util.List;
  */
 public interface LoginService {
 
-    List<Clerk> getClerk();
+    /**
+     * 职员注册
+     * @param username 职员用户名
+     * @param password 职员密码
+     * @return 是否注册成功
+     */
+    boolean clerkRegister(String username, String password);
 
-    void addClerk();
+    /**
+     * 职员登录
+     * @param username 职员用户名
+     * @param password 职员密码
+     * @return 是否登录成功
+     */
+    boolean clerkLogin(String username, String password);
 
-    void updateClerk();
-
-    void deleteClerk();
-
-    List<Customer> getCustomer();
-
-    void addCustomer(Long clerkId);
-
-    void updateCustomer();
-
-    void deleteCustomer();
+    /**
+     * 客户登录
+     * @param username 客户用户名
+     * @param password 客户密码
+     * @return 是否登录成功
+     */
+    boolean customerLogin(String username, String password);
 }

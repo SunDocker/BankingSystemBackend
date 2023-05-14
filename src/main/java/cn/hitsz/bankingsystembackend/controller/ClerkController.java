@@ -1,12 +1,11 @@
 package cn.hitsz.bankingsystembackend.controller;
 
-import cn.hitsz.bankingsystembackend.dao.entity.Clerk;
-import cn.hitsz.bankingsystembackend.dao.entity.TestClerk;
+import cn.hitsz.bankingsystembackend.pojo.ResponseMessage;
 import cn.hitsz.bankingsystembackend.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import javax.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping("clerk")
@@ -28,33 +27,25 @@ public class ClerkController {
         return "banking system clerk test";
     }
 
-    @GetMapping()
-    public String getTestClerk() {
-        List<Clerk> clerks = loginService.getClerk();
-
-        StringBuffer sb = new StringBuffer();
-        for (Clerk clerk : clerks) {
-            sb.append(clerk).append('\n');
+    @PostMapping("register/{username}/{password}")
+    @ResponseBody
+    public ResponseMessage clerkRegister(@PathVariable("username") String username, @PathVariable("password") String password) {
+        if (loginService.clerkRegister(username, password)) {
+            return new ResponseMessage(true, null);
+        } else {
+            return new ResponseMessage(false, null);
         }
-        return "retrieve response successfully, " +
-                "test clerks:\n" + sb;
     }
 
-    @PostMapping()
-    public String addClerk() {
-        loginService.addClerk();
-        return "create response successfully, please check the database table";
+    @GetMapping("register/{username}/{password}")
+    @ResponseBody
+    public ResponseMessage clerkLogin(@PathVariable("username") String username, @PathVariable("password") String password, HttpSession session) {
+        if (loginService.clerkLogin(username, password)) {
+            session.setAttribute("login", true);
+            return new ResponseMessage(true, null);
+        } else {
+            return new ResponseMessage(false, null);
+        }
     }
 
-    @PutMapping()
-    public String updateClerk() {
-        loginService.updateClerk();
-        return "update response successfully, please check the database table";
-    }
-
-    @DeleteMapping()
-    public String deleteClerk() {
-        loginService.deleteClerk();
-        return "delete response successfully, please check the database table";
-    }
 }

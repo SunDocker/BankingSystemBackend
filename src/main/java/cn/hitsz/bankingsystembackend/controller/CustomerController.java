@@ -4,10 +4,12 @@ import cn.hitsz.bankingsystembackend.dao.TestClerkDao;
 import cn.hitsz.bankingsystembackend.dao.entity.Customer;
 import cn.hitsz.bankingsystembackend.dao.entity.TestClerk;
 import cn.hitsz.bankingsystembackend.dao.entity.TestCustomer;
+import cn.hitsz.bankingsystembackend.pojo.ResponseMessage;
 import cn.hitsz.bankingsystembackend.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController()
@@ -28,34 +30,13 @@ public class CustomerController {
         return "banking system customer test";
     }
 
-    @GetMapping()
-    public String getTestCustomer() {
-        List<Customer> customers = loginService.getCustomer();
-
-        StringBuffer sb = new StringBuffer();
-        for (Customer customer : customers) {
-            System.out.println(customer.getClerkId());
-            sb.append(customer).append('\n');
+    @GetMapping("login/{username}/{password}")
+    public ResponseMessage customerLogin(@PathVariable("username") String username, @PathVariable("password") String password, HttpSession session) {
+        if (loginService.customerLogin(username, password)) {
+            session.setAttribute("login", true);
+            return new ResponseMessage(true, null);
+        } else {
+            return new ResponseMessage(false, null);
         }
-        return "retrieve response successfully, " +
-                "test customers:\n" + sb;
-    }
-
-    @PostMapping()
-    public String addTestCustomer() {
-        loginService.addCustomer(loginService.getClerk().get(0).getId());
-        return "create response successfully, please check the database table";
-    }
-
-    @PutMapping()
-    public String updateTestCustomer() {
-        loginService.updateCustomer();
-        return "update response successfully, please check the database table";
-    }
-
-    @DeleteMapping()
-    public String deleteTestCustomer() {
-        loginService.deleteCustomer();
-        return "delete response successfully, please check the database table";
     }
 }
