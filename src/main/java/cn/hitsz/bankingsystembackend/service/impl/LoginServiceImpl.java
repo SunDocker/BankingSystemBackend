@@ -67,18 +67,19 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public void addCustomer(Long clerk_id) {
+    public void addCustomer(Long clerkId) {
         // TODO
         Customer customer = new Customer();
 
         // MybatisPlus 默认用雪花算法生成实体的 id，不需要我们自己指定
         // testClerk.setId(xxx);
-        customer.setClerk_id(clerk_id);
-//        System.out.println(customer.getClerk_id());
+        customer.setClerkId(clerkId);
+        System.out.println(customer.getClerkId());
         customer.setUsername("user" + System.currentTimeMillis());
         customer.setPassword(String.valueOf(System.currentTimeMillis()));
         customer.setState(0);
         customer.setBalance(0L);
+        System.out.println(customer);
 
         customerDao.insert(customer);
     }

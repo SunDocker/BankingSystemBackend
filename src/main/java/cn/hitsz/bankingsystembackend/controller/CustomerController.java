@@ -34,7 +34,7 @@ public class CustomerController {
 
         StringBuffer sb = new StringBuffer();
         for (Customer customer : customers) {
-            System.out.println(customer.getClerk_id());
+            System.out.println(customer.getClerkId());
             sb.append(customer).append('\n');
         }
         return "retrieve response successfully, " +

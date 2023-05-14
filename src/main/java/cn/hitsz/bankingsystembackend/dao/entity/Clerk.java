@@ -6,7 +6,7 @@ public class Clerk {
     private Long id;
     private String username;
     private String password;
-    private int state;
+    private Integer state;
 
     public Long getId() {
         return id;
@@ -31,11 +31,12 @@ public class Clerk {
     public void setPassword(String password) {
         this.password = password;
     }
-    public int getState() {
+
+    public Integer getState() {
         return state;
     }
 
-    public void setState(int State) {
+    public void setState(Integer state) {
         this.state = state;
     }
 

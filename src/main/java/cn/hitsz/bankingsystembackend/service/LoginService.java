@@ -24,7 +24,7 @@ public interface LoginService {
 
     List<Customer> getCustomer();
 
-    void addCustomer(Long clerk_id);
+    void addCustomer(Long clerkId);
 
     void updateCustomer();
 

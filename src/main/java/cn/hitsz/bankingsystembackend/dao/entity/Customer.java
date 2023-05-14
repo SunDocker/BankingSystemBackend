@@ -3,11 +3,11 @@ package cn.hitsz.bankingsystembackend.dao.entity;
 public class Customer {
     // TODO: 数据库中的表已经创建好了，现在要编写这个实体类，重写 toString() 方法
     private Long id;
-    private Long clerk_id;
+    private Long clerkId;
     private String username;
     private String password;
     private Long balance;
-    private int state;
+    private Integer state;
 
 
 
@@ -45,23 +45,23 @@ public class Customer {
         this.balance = balance;
     }
 
-    public int getState() {
+    public Integer getState() {
         return state;
     }
 
-    public void setState(int State) {
+    public void setState(Integer state) {
         this.state = state;
     }
 
-    public Long getClerk_id() { return clerk_id; }
+    public Long getClerkId() { return clerkId; }
 
-    public void setClerk_id(Long clerk_id) { this.clerk_id = clerk_id; }
+    public void setClerkId(Long clerkId) { this.clerkId = clerkId; }
 
     @Override
     public String toString() {
         return "TestCustomer{" +
                 "id=" + id +
-                ", clerk_id='" + clerk_id + '\'' +
+                ", clerkId='" + this.clerkId + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", state='" + state + '\'' +
