@@ -39,6 +39,12 @@ public class CustomerController {
         }
     }
 
+    @GetMapping("logout")
+    public ResponseMessage logout(HttpSession session) {
+        session.removeAttribute("customerLogin");
+        return new ResponseMessage(true, null);
+    }
+
     @GetMapping("balance")
     public ResponseMessage balance(HttpSession session) {
         Long id = (Long) session.getAttribute("customerLogin");
@@ -53,6 +59,18 @@ public class CustomerController {
         }
     }
 
+    @PostMapping("deposit/{depositAmount}")
+    public ResponseMessage deposit(@PathVariable("depositAmount") Long depositAmount, HttpSession session) {
+        Long id = (Long) session.getAttribute("customerLogin");
+        if (id == null) {
+            return new ResponseMessage(false, null);
+        }
+        if (balanceService.deposit(depositAmount)) {
+            return new ResponseMessage(true, null);
+        }
+        return new ResponseMessage(false, null);
+    }
+
     @PostMapping("transfer/{transferAccount}/{transferAmount}")
     public ResponseMessage transfer(@PathVariable("transferAccount") String transferAccount, @PathVariable("transferAmount") Long transferAmount, HttpSession session) {
         Long id = (Long) session.getAttribute("customerLogin");
@@ -60,8 +78,6 @@ public class CustomerController {
             return new ResponseMessage(false, null);
         }
         if (balanceService.transfer(id, transferAccount, transferAmount)) {
-            System.out.println(transferAccount);
-            System.out.println(transferAmount);
             return new ResponseMessage(true, null);
         }
         return new ResponseMessage(false, null);
