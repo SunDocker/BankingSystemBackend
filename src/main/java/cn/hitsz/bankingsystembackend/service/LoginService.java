@@ -20,7 +20,7 @@ public interface LoginService {
      *
      * @param username 职员用户名
      * @param password 职员密码
-     * @return 是否登录成功
+     * @return 登录成功返回职员 ID ，登录失败返回 null
      */
     Long clerkLogin(String username, String password);
 
@@ -29,7 +29,7 @@ public interface LoginService {
      *
      * @param username 客户用户名
      * @param password 客户密码
-     * @return 是否登录成功
+     * @return 登录成功返回客户 ID ，登录失败返回 null
      */
     Long customerLogin(String username, String password);
 }

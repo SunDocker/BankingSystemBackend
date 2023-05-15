@@ -1,8 +1,12 @@
 package cn.hitsz.bankingsystembackend.dao.entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+
 public class Clerk {
     // 必须使用基本数据类型的包装类，不能直接使用基本数据类型
     // 必须保证主键的字段名为 id，MyBatisPlus 才可以自动识别
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
     private String username;
     private String password;

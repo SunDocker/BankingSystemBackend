@@ -1,8 +1,13 @@
 package cn.hitsz.bankingsystembackend.dao.entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+
 public class Customer {
     // TODO: 数据库中的表已经创建好了，现在要编写这个实体类，重写 toString() 方法
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long clerkId;
     private String username;
     private String password;
