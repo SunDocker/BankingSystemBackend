@@ -65,7 +65,7 @@ public class CustomerController {
         if (id == null) {
             return new ResponseMessage(false, null);
         }
-        if (balanceService.deposit(depositAmount)) {
+        if (balanceService.deposit(id,depositAmount)) {
             return new ResponseMessage(true, null);
         }
         return new ResponseMessage(false, null);

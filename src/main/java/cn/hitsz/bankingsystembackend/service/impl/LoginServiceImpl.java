@@ -51,7 +51,6 @@ public class LoginServiceImpl implements LoginService {
         }
         Clerk clerk = clerks.get(0);
         if(clerk.getPassword().equals(password)){
-            clerkDao.update(clerk,wrapper);
             return clerk.getId();
         }
         return null;

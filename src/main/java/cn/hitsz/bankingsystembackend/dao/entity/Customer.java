@@ -1,5 +1,6 @@
 package cn.hitsz.bankingsystembackend.dao.entity;
 
+import com.baomidou.mybatisplus.annotation.Version;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 
@@ -12,10 +13,11 @@ public class Customer {
     private String username;
     private String password;
     private Long balance;
+    //private Integer state;
+
+
+    @Version
     private Integer state;
-
-
-
 
 
     public Long getId() {

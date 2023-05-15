@@ -23,5 +23,5 @@ public interface BalanceService {
      * @param depositAmount 存款金额
      * @return 是否存款成功
      */
-    boolean deposit(Long depositAmount);
+    boolean deposit(Long id,Long depositAmount);
 }
