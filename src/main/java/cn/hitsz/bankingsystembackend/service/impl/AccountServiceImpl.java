@@ -8,8 +8,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Array;
-import java.util.ArrayList;
+
 import java.util.List;
 
 @Service
@@ -22,8 +21,7 @@ public class AccountServiceImpl implements AccountService {
 
         LambdaQueryWrapper<Customer> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(Customer::getClerkId,clerkID);
-        List<Customer> customers = customerDao.selectList(wrapper);
-        return customers;
+        return customerDao.selectList(wrapper);
         // 下面只是测试数据，开发时请自行删除
         /*
         Customer customer1 = new Customer();
