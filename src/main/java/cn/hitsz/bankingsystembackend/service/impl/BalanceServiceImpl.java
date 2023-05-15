@@ -16,14 +16,14 @@ public class BalanceServiceImpl implements BalanceService {
     @Override
     public Long getBalance(Long id) {
         // TODO
-        LambdaQueryWrapper<Customer> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(Customer::getId,id);
-        List<Customer> customers =  customerDao.selectList(wrapper);
-        if(customers.isEmpty()){
-            return null;
+        Customer customer = customerDao.selectById(id);
+        if(customer != null){
+            return customer.getBalance();
         }
-        Customer customer = customers.get(0);
-        return customer.getBalance();
+        else{
+            return 0L;
+        }
+
     }
 
     @Override
