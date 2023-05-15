@@ -2,9 +2,14 @@ package cn.hitsz.bankingsystembackend.service.impl;
 
 import cn.hitsz.bankingsystembackend.dao.ClerkDao;
 import cn.hitsz.bankingsystembackend.dao.CustomerDao;
+import cn.hitsz.bankingsystembackend.dao.entity.Clerk;
+import cn.hitsz.bankingsystembackend.dao.entity.Customer;
 import cn.hitsz.bankingsystembackend.service.LoginService;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class LoginServiceImpl implements LoginService {
@@ -21,18 +26,51 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public boolean clerkRegister(String username, String password) {
         // TODO
+        LambdaQueryWrapper<Clerk> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(Clerk::getUsername,username);
+        List<Clerk> clerks = clerkDao.selectList(wrapper);
+        if(!clerks.isEmpty()){
+            return false;
+        }
+        Clerk clerk = new Clerk();
+        clerk.setUsername(username);
+        clerk.setPassword(password);
+        clerk.setState(0);
+        clerkDao.insert(clerk);
         return true;
     }
 
     @Override
     public Long clerkLogin(String username, String password) {
         // TODO
-        return 12345666L;
+        LambdaQueryWrapper<Clerk> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(Clerk::getUsername,username);
+        List<Clerk> clerks = clerkDao.selectList(wrapper);
+        if(clerks.isEmpty()){
+            return null;
+        }
+        Clerk clerk = clerks.get(0);
+        if(clerk.getPassword().equals(password)){
+            clerkDao.update(clerk,wrapper);
+            return clerk.getId();
+        }
+        return null;
+
     }
 
     @Override
     public Long customerLogin(String username, String password) {
         // TODO
-        return 12345666L;
+        LambdaQueryWrapper<Customer> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(Customer::getUsername,username);
+        List<Customer> customers = customerDao.selectList(wrapper);
+        if(customers.isEmpty()){
+            return null;
+        }
+        Customer customer = customers.get(0);
+        if(customer.getPassword().equals(password)){
+            return customer.getId();
+        }
+        return null;
     }
 }
