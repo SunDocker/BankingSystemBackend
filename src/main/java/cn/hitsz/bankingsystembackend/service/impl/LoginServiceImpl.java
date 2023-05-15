@@ -36,8 +36,11 @@ public class LoginServiceImpl implements LoginService {
         clerk.setUsername(username);
         clerk.setPassword(password);
         clerk.setState(0);
-        clerkDao.insert(clerk);
-        return true;
+        if(clerkDao.insert(clerk) != 0){
+            return true;
+        }
+        return false;
+
     }
 
     @Override
