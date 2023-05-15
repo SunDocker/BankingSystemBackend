@@ -67,6 +67,7 @@ public class AccountServiceImpl implements AccountService {
         LambdaQueryWrapper<Customer> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(Customer::getId,accountId);
         List<Customer> customers = customerDao.selectList(wrapper);
+        System.out.println("ID :" + accountId);
         if(customers.isEmpty()){
             return false;
         }
